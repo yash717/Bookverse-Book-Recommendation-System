@@ -2,3 +2,4 @@ flask
 numpy
 pandas
 gunicorn
+flask_mysqldb

@@ -1,6 +1,6 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request,jsonify,flash
 import pickle
-
+from flask_mysqldb import MySQL,MySQLdb 
 import numpy as np
 
 top_fifty = pickle.load(open('top_fifty.pkl', 'rb'))
@@ -14,6 +14,14 @@ similarity_scores = pickle.load(open('similarity_scores.pkl', 'rb'))
 
 app = Flask(__name__)
 
+app.secret_key = "caircocoders-ednalan"
+
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'testingdb'
+app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+mysql = MySQL(app)
 
 
 @app.route('/')
@@ -37,6 +45,7 @@ def critics():
 
 @app.route('/recommend_reviews', methods=['POST'])
 def recommend_reviews():
+    
     if request.method == 'POST':
         user_input = request.form.get('user_input')
 
@@ -55,6 +64,8 @@ def recommend_reviews():
             book_list.append(list)
         print(book_list)
     return render_template('reviews.html', data=book_list[2:20])
+   
+
 
 
 @app.route('/recommend_critics', methods=['post'])
@@ -78,6 +89,17 @@ def recommend():
 
     return render_template('critics.html', data=data)
 
+
+@app.route("/ajaxpost", methods=["POST", "GET"])
+def ajaxpost():
+    cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    if request.method == 'POST':
+        queryString = request.form['queryString']
+        print(queryString)
+        query = "SELECT * from countries WHERE title LIKE '{}%' LIMIT 7".format(queryString)
+        cur.execute(query)
+        countries = cur.fetchall()
+    return jsonify({'htmlresponse': render_template('response.html', countries=countries)})
 
 
 if __name__ == '__main__':

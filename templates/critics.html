@@ -67,7 +67,7 @@
             {% for i in data %}
             <div class=" col_padding col-md-4 ">
                 <div id='card1' class="card">
-                    <img id="img_tag" src="{{ i[2] }}" class="card-img-top" alt="book1">
+                    <img id="img_tag" src="{{ i[2] }}"  class="card-img-top" alt="Image not found" onerror="this.onerror=null;this.src='static\styles\images\logo2.png';">
                     <div class="card-body">
                         <h5 id='card_title' class="card-title">{{ i[0] }}</h5>
                         <p class="card-text">{{ i[1] }}</p>
