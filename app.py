@@ -5,7 +5,6 @@ import numpy as np
 top_fifty = pickle.load(open('top_fifty.pkl', 'rb'))
 idlist = pickle.load(open('idlist.pkl', 'rb'))
 book1 = pickle.load(open('book1.pkl', 'rb'))
-books_lists=pickle.load(open('books_lists.pkl', 'rb'))
 pt = pickle.load(open('pt.pkl', 'rb'))
 books = pickle.load(open('books.pkl', 'rb'))
 similarity_scores = pickle.load(open('similarity_scores.pkl', 'rb'))
@@ -22,8 +21,7 @@ def index():
                            author=list(top_fifty['authors'].values),
                            image=list(top_fifty['image_url'].values),
                            rating=list(top_fifty['average_rating'].values),
-                           rating_count=list(top_fifty['ratings_count'].values),
-                           books_lists=books_lists,                          
+                           rating_count=list(top_fifty['ratings_count'].values),                                                 
                            )
 
 @app.route('/reviews')
