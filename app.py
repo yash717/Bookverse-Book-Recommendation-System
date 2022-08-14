@@ -23,7 +23,6 @@ def index():
                            image=list(top_fifty['image_url'].values),
                            rating=list(top_fifty['average_rating'].values),
                            rating_count=list(top_fifty['ratings_count'].values),
-                           books_lists=books_lists,                          
                            )
 
 @app.route('/reviews')
