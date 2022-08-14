@@ -17,6 +17,91 @@ html, body {
     font-family: 'Montserrat', sans-serif;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+::selection {
+    color: #fff;
+    background: #01c5e2;
+}
+
+.wrapper {
+    max-width: 90vw;
+    margin: 46px auto;
+}
+
+.wrapper .searchBar {
+    background: #fff;
+    width: 100%;
+    border-radius: 50px;
+    position: relative;
+    box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.12);
+}
+
+.searchBar input {
+    height: 55px;
+    width: 100%;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 0 60px 0 20px;
+    font-size: 18px;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.searchBar.active input {
+    border-radius: 5px 5px 0 0;
+}
+
+.searchBar .autocom-box {
+    font-weight:bold;
+    padding: 0;
+    opacity: 0;
+    pointer-events: none;
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.searchBar.active .autocom-box {
+    padding: 10px 8px;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.autocom-box li {
+    list-style: none;
+    padding: 8px 12px;
+    display: none;
+    width: 100%;
+    cursor: default;
+    border-radius: 3px;
+}
+
+.searchBar.active .autocom-box li {
+    display: block;
+    border-radius: 35px;
+}
+
+.autocom-box li:hover {
+    background: #0ccafa;
+    color:white;
+}
+
+.searchBar .searchBtn {
+    position: absolute;
+    right: 1px;
+    border-radius: 121px;
+    border: white;
+    background-color: white;
+    top: 0px;
+    height: 56px;
+    width: 59px;
+    text-align: center;
+    line-height: 55px;
+    font-size: 25px;
+    color: #644bff;
+    cursor: pointer;
+}
+
 #country {
     width: 200px;
     padding: 3px;
@@ -24,37 +109,6 @@ html, body {
     vertical-align: middle;
 }
 
-.suggestionsBox {
-    display:None;
-    border-radius: 1.625rem;
-    color: #fff;
-    margin: 10px;
-    padding: 10px;
-    background: #f5f5f5;
-    top: 0;
-    left: 0;
-}
-
-.suggestionList {
-    margin: 0px;
-    padding: 0px;
-}
-
-.suggestionList ul li {
-    list-style: none;
-    margin: 0px;
-    font-size:15px;
-    padding: 6px;
-    border-radius:15px;
-    cursor: pointer;
-}
-
-.suggestionList ul li:hover {
-    background-color: #01c5e2;
-    color: rgb(255, 255, 255);
-    border-bottom: 1px dotted #01c5e2;
-    text-align: left;
-}
 
 ul {
     font-family: Arial, Helvetica, sans-serif;
@@ -70,9 +124,6 @@ ul {
     background-repeat: no-repeat;
 }
 
-#suggest {
-    position: relative;
-}
 
 
 #progress {
@@ -99,6 +150,11 @@ ul {
     place-items: center;
     font-size: 35px;
     color: #001a2e;
+}
+
+#id_for_li:hover {
+    background-color: #01c5e2;
+
 }
 
 .fa-regular, .far {
@@ -476,7 +532,7 @@ header .navigation .menu-list li a:hover {
 }
 
 .col_row {
-    padding: 10px;
+    padding-left: 10px;
     text-align: center;
 }
 
@@ -485,6 +541,7 @@ header .navigation .menu-list li a:hover {
 /* topbooks */
 
 .topBooks {
+
     color: #ffffff;
     text-align: center;
     font-size: 30px;
@@ -497,6 +554,7 @@ header .navigation .menu-list li a:hover {
     border-radius: 20px;
 
 }
+
 
 #logo_id {
     width: 170px;
@@ -532,49 +590,6 @@ header .navigation .menu-list li a:hover {
 }
 
 
-/* searchbar */
-.wrapper {
-    margin-top: 20px;
-    width: 100%;
-    max-width: 61.25rem;
-    margin: 2rem auto 0 auto;
-}
-
-.label {
-    text-align: center;
-    margin-bottom: 1rem;
-}
-
-.searchBar {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-#searchQueryInput {
-    width: 100%;
-    height: 2.8rem;
-    background: #f5f5f5;
-    outline: none;
-    border: none;
-    border-radius: 1.625rem;
-    padding: 0 3.5rem 0 1.5rem;
-    font-size: 1rem;
-}
-
-#searchQuerySubmit {
-    width: 3.5rem;
-    height: 2.8rem;
-    margin-left: -3.5rem;
-    background: none;
-    border: none;
-    outline: none;
-}
-
-#searchQuerySubmit:hover {
-    cursor: pointer;
-}
 
 /* footer */
 

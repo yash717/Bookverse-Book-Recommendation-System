@@ -16,13 +16,13 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" , href="static\styles\index.css" , type="text/css">
-    <script src="{{url_for('static', filename='/script/index.js')}}"></script>
+    
 
 </head>
 
 <body>
-     <div id="progress">
-      <span id="progress-value">&#x1F815;</span>
+    <div id="progress">
+      <span id="progress-value"><i class="fa-solid fa-arrow-up"></i></span>
     </div>
     <!--====== Header Section Start ======-->
     <header>
@@ -47,24 +47,21 @@
     </header>
     <div class="wrapper">
         <form id='form' action="/recommend_reviews" method="POST",name='form'>
-            <div id="suggest" class="searchBar" >
-                <input id="searchQueryInput" type="text"  id="country" name="user_input" class="searchBar"  onkeyup="suggest(this.value);" onblur="fill();"  autocomplete="off" placeholder="Type Book Name Here For Recommendation" value="" />            
-                <button id="searchQuerySubmit" class="searchBtn"  type="submit" name="searchQuerySubmit">
-                  <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                      <path fill="#666666"
-                        d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
-                  </svg>
-                </button>
-            </div>            
-            <div class="suggestionsBox" id="suggestions">
-                <div class="suggestionList" id="suggestionsList"></div>
-            </div>                
-        </form>
+            <div class="searchBar" id="suggest">      
+            <input type="text" id="searchQueryInput" name="user_input"  class="searchBar"  autocomplete="off"  placeholder="Type Book Name Here For Recommendation" />          
+            <div class="autocom-box">
+                <!-- here list are inserted from javascript -->
+            </div>
+            <button id="searchQuerySubmit" class="searchBtn"  type="submit" name="searchQuerySubmit"><i class="fas fa-search"></i></button>
+            </div>
+        </form>  
     </div>
     {% if data %}
+    <div class="wrapper">
     <div class="topBooks">
         <div id="top">Top Recommended Books According To Reviews</div>
     </div>
+</div>
     {% endif %}
 
     <div class="container_flex container-fluid">
@@ -124,6 +121,7 @@
             <p>copyright © 2022 Bookverse | Designed by Bookverse</p>
         </div>
     </footer>
+    <script src="{{url_for('static', filename='/script/index.js')}}"></script>
 
     <!-- Jquery needed -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -145,24 +143,6 @@
             });
         });
 
-        function suggest(inputString){
-        if(inputString.length == 0) {
-            $('#suggestions').fadeOut();           
-
-        } else {
-            $('#country').addClass('load');
-            $.post("/ajaxpost", {queryString: ""+inputString+""}, function(data){
-                    $('#suggestions').fadeIn();
-                    $('#suggestionsList').html(data); 
-                    $('#suggestionsList').append(data.htmlresponse);
-                    $('#country').removeClass('load');
-            });
-        }
-        }
-        function fill(thisValue) {
-        $('#country').val(thisValue);
-        setTimeout("$('#suggestions').fadeOut();", 620000);
-        }
     </script>
 </body>
 
